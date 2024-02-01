@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  postgres:
+    image: postgres:latest
+    container_name: db-postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./data_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=rootpass
+      - POSTGRES_DB=micros-email
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+volumes:
+  data_db:
