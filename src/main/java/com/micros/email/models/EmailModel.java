@@ -91,6 +91,43 @@ public class EmailModel implements Serializable {
         this.statusEmail = statusEmail;
     }
 
+    //Builder Pattern
+    public static class EmailModelBuilder{
 
-    
+        private String ownerRef;
+        private String emailFrom;
+        private String emailTo;
+        private String subject;
+        private String text;
+
+        public EmailModelBuilder ownerRef(String ownerRef) {
+            this.ownerRef = ownerRef;
+            return this;
+        }
+
+        public EmailModelBuilder emailFrom(String emailFrom) {
+            this.emailFrom = emailFrom;
+            return this;
+        }
+
+        public EmailModelBuilder emailTo(String emailTo) {
+            this.emailTo = emailTo;
+            return this;
+        }
+
+        public EmailModelBuilder subject(String subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        public EmailModelBuilder text(String text) {
+            this.text = text;
+            return this;
+        }
+
+        public EmailModel build(){
+            return new EmailModel(ownerRef, emailFrom, emailTo, subject, text);
+        }
+    }
+
 }
